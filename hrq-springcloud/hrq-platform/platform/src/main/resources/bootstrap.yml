@@ -1,0 +1,20 @@
+server:
+  port: 8081
+spring:
+  cloud:
+    config:
+      discovery:
+        enabled: true  #不读取配置中心的配置
+        service-id: config-server #配置中心的id名称。不要修改，否则无法找到配置中心的服务
+      profile: dev    #如果是本地开发，把这个变量名修改成dev
+      label: dev #远程用来存放配置文件的 git的分支
+      name: platform
+  application:
+    name: platfrom-server
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8889/eureka/

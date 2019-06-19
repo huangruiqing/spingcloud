@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: config-server
+  profiles:
+    active: native #读取本地文件
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: C:/My_Space/SpringCloudDemo/config-files/platform
+server:
+  port: 8880
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+  client:
+    service-url:
+     defaultZone: http://127.0.0.1:8889/eureka/
